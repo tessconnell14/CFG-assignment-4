@@ -1,6 +1,6 @@
 -- Database for London Attractions CFG group project - London Eye
 -- Purpose: to book tickets to attraction
-
+CREATE DATABASE new_schema;
 USE new_schema;
 
 -- Create table for booking availability
@@ -12,14 +12,16 @@ CREATE TABLE availability
     afternoon_max_tickets INT
     );
 
+
 -- Create table for bookings created
 CREATE TABLE bookings
 	(name_ID INTEGER auto_increment PRIMARY KEY,
 	customer_name VARCHAR(50) NOT NULL,
     booking_date DATETIME,
-	morning_or_afternoon INT,
+	morning_or_evening VARCHAR(20),
     FOREIGN KEY (booking_date) REFERENCES availability(booking_date)
 	);
+    
 
 -- Populate availability table with data
 INSERT INTO availability
@@ -33,4 +35,18 @@ INSERT INTO availability
     ('2024-04-20', 10, 10),
     ('2024-04-21', 10, 10);
     
-SELECT * FROM bookings
+UPDATE availability
+SET morning_booked_tickets = 0
+WHERE morning_booked_tickets IS NULL;
+
+UPDATE availability
+SET afternoon_booked_tickets = 0
+WHERE afternoon_booked_tickets IS NULL;
+
+ALTER TABLE availability
+RENAME COLUMN afternoon_booked_tickets TO  evening_booked_tickets,
+RENAME COLUMN afternoon_max_tickets TO  evening_max_tickets;
+    
+SELECT * FROM bookings;
+
+SELECT * FROM new_schema.availability;
