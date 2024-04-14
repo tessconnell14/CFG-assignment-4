@@ -1,34 +1,38 @@
 from flask import Flask, jsonify, request
-from db_utils import xxx
+from db_utils import get_all_booking_availability, add_booking, get_booking_details, cancel_booking_details
 
 app = Flask(__name__)
 
 
-# GET - information about availability
-
-@app.route('/availability/<date>')
-def get_bookings(date):
+# Endpoint 1: Check Availability for a Specific Date
+@app.route('/availability/<date>', methods=["GET"])
+def check_availability(date):
     res = get_all_booking_availability(date)
     return jsonify(res)
 
-
-# PUT - Add a booking
-
+# Endpoint 2: Book Tickets
 @app.route('/booking', methods=['PUT'])
-def book_attraction():
+def book_tickets():
     booking = request.get_json()
     add_booking(
         _date=booking['date'],
-        london_attraction=booking['londonAttraction'],
-        time=booking['time'],
-        customer=booking['customer']
+        morning_or_afternoon=booking['morning_or_afternoon'],
+        customer_name=booking['customer_name']
     )
 
     return jsonify(booking)
 
+# Endpoint 3: Retrieve Booking Details
+@app.route('/bookings/<int:booking_id>', methods=['GET'])
+def booking_details(booking_id):
+    reservation = get_booking_details(booking_id)
+    return jsonify(reservation)
 
-# DELETE - Deleting a booking that has been made
-# PATCH - Updating part of the booking
+# Endpoint 4: Cancel Booking
+@app.route('/bookings/<int:booking_id>', methods=['DELETE'])
+def cancel_booking(booking_id):
+    deleted = cancel_booking_details(booking_id)
+    return jsonify(deleted)
 
 if __name__ == '__main__':
     app.run(debug=True, port=5001)
