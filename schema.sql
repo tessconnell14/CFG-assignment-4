@@ -1,6 +1,7 @@
 -- Database for London Attractions CFG group project - London Eye
 -- Purpose: to book tickets to attraction
 
+CREATE DATABASE new_schema;
 USE new_schema;
 
 -- Create table for booking availability
