@@ -15,7 +15,7 @@ CREATE TABLE availability
 
 -- Create table for bookings created
 CREATE TABLE bookings
-	(name_ID INTEGER auto_increment PRIMARY KEY,
+	(name_ID INTEGER AUTO_INCREMENT PRIMARY KEY,
 	customer_name VARCHAR(50) NOT NULL,
     booking_date DATETIME,
 	morning_or_afternoon INT,
