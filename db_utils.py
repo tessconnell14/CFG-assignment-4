@@ -1,5 +1,6 @@
 import mysql.connector
 from config import USER, PASSWORD, HOST
+import random
 
 
 class DbConnectionError(Exception):
@@ -17,8 +18,23 @@ def _connect_to_db(db_name):
     )
     return cnx
 
+
+# Map our database schedule to a readable user-friendly schedule
+def _map_values(schedule):
+    mapped = []
+    for item in schedule:
+        mapped.append({
+            'date': item[0],
+            'booked_tickets_morning': item[1],
+            'tickets_available_morning': item[2],
+            'booked_tickets_evening': item[3],
+            'tickets_available_evening': item[4]
+        })
+    return mapped
+
+
 # Return all booking availability for a given date
-def get_all_booking_availability(_date):
+def get_all_booking_availability():
     availability = []
     try:
         db_name = 'new_schema'
@@ -29,12 +45,12 @@ def get_all_booking_availability(_date):
         query = """
             SELECT *
             FROM availability
-            WHERE booking_date = '{}' 
-            """.format(_date)
+            """
 
         cur.execute(query)
 
-        availability = cur.fetchall()
+        result = cur.fetchall()
+        availability = _map_values(result)
         cur.close()
 
     except Exception:
@@ -47,26 +63,25 @@ def get_all_booking_availability(_date):
 
     return availability
 
+
 # Insert a booking in our bookings table
-def add_booking(_date, morning_or_afternoon, customer_name):
+def add_booking(chosen_date, chosen_slot, customer):
     try:
         db_name = 'new_schema'
         db_connection = _connect_to_db(db_name)
         cur = db_connection.cursor()
         print("Connected to DB: %s" % db_name)
 
-        query = ("""
-        UPDATE bookings 
-        SET 
-            customer_name = '{customer}',
-            morning_or_afternoon = 1 
-        WHERE booking_date = '{date}';
+        name_id = random.randint(1, 1000)
 
-        UPDATE availability 
-        SET 
-            morning_booked_tickets = morning_booked_tickets + 1 
-        WHERE booking_date = '{date}';
-        """.format(customer=customer_name, date=_date, morning_or_afternoon=morning_or_afternoon))
+        query = """
+            INSERT INTO bookings (name_ID, customer_name, booking_date, morning_or_evening)
+            VALUES (
+                '{name_id}', 
+                '{customer}', 
+                '{chosen_date}',
+                '{chosen_slot}')
+        """.format(name_id=name_id, chosen_slot=chosen_slot, customer=customer, chosen_date=chosen_date)
 
         cur.execute(query)
         db_connection.commit()
@@ -80,9 +95,38 @@ def add_booking(_date, morning_or_afternoon, customer_name):
             db_connection.close()
             print("DB connection is closed")
 
-# Return all booking details
-def get_booking_details(booking_id):
-    booking_details = []
+
+# Update the availability table
+def update_availability(chosen_date, chosen_slot):
+    try:
+        db_name = 'new_schema'
+        db_connection = _connect_to_db(db_name)
+        cur = db_connection.cursor()
+        print("Connected to DB: %s" % db_name)
+
+        name_id = random.randint(1, 1000)
+
+        query = """
+            UPDATE availability 
+            SET {chosen_slot}_booked_tickets = {chosen_slot}_booked_tickets + 1
+            WHERE booking_date = '{chosen_date}'
+        """.format(chosen_slot=chosen_slot, chosen_date=chosen_date)
+
+        cur.execute(query)
+        db_connection.commit()
+        cur.close()
+
+    except Exception:
+        raise DbConnectionError("Failed to update data on DB")
+
+    finally:
+        if db_connection:
+            db_connection.close()
+            print("DB connection is closed")
+
+
+# Check availability for a specific date and timeslot
+def check_availability(chosen_date, chosen_slot):
     try:
         db_name = 'new_schema'
         db_connection = _connect_to_db(db_name)
@@ -90,55 +134,52 @@ def get_booking_details(booking_id):
         print("Connected to DB: %s" % db_name)
 
         query = """
-            SELECT *
-            FROM bookings
-            WHERE booking_id = '{}' 
-            """.format(booking_id)
+            SELECT {chosen_slot}_booked_tickets, {chosen_slot}_max_tickets
+            FROM availability
+            WHERE booking_date = '{chosen_date}'
+        """.format(chosen_slot=chosen_slot, chosen_date=chosen_date)
 
         cur.execute(query)
-
-        booking_details = cur.fetchall()
+        result = cur.fetchall()
+        db_connection.commit()
         cur.close()
 
     except Exception:
-        raise DbConnectionError("Failed to read data from DB")
+        raise DbConnectionError("Failed to update data on DB")
 
     finally:
         if db_connection:
             db_connection.close()
-            print("DB connection closed")
+            print("DB connection is closed")
 
-    return booking_details
+    return result
 
-# Cancel booking
-def cancel_booking_details(booking_id):
-    booking_details = []
+
+# Delete a booking
+def cancel_booking_details(name_id):
     try:
         db_name = 'new_schema'
         db_connection = _connect_to_db(db_name)
         cur = db_connection.cursor()
         print("Connected to DB: %s" % db_name)
 
-        query = """
-            DELETE *
-            FROM bookings
-            WHERE booking_id = '{}' 
-            """.format(booking_id)
+        query = """DELETE FROM bookings WHERE name_ID = '{}'""".format(name_id=name_id)
 
         cur.execute(query)
-
-        booking_details = cur.fetchall()
+        result = cur.fetchall()
+        db_connection.commit()
         cur.close()
 
     except Exception:
-        raise DbConnectionError("Failed to read data from DB")
+        raise DbConnectionError("Failed to update data on DB")
 
     finally:
         if db_connection:
             db_connection.close()
-            print("DB connection closed")
+            print("DB connection is closed")
 
-    return booking_details
+    return result
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=5001)
