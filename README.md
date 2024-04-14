@@ -7,18 +7,62 @@ This project includes the design and implementation of an API
 
 ---
 
-# London Attractions
+London Eye Booking API
 
-London Attractions is a simple web application that provides information about various attractions in London, including landmarks, museums, parks, and cultural sites. It helps users discover popular tourist destinations and hidden gems across the city.
+Introduction
 
-## Features
+Welcome to the London Eye Booking API documentation! This API allows users to check availability and make bookings for slots at the London Eye attraction.
 
-- **Search**: Users can search for attractions by name, category, or location.
-- **Detailed Information**: Each attraction listing includes descriptions, addresses, opening hours, and other relevant details.
-- **Filtering**: Users can filter attractions by popularity, ratings, and other criteria.
-- **Interactive Maps**: Displays attractions on maps for easy navigation.
-- **User Reviews**: Allows users to leave reviews and ratings for attractions.
-- **Favorites**: Enables users to save attractions to their favorites for future reference.
+Installation Requirements
+
+Before running the API, ensure you have the following installed:
+
+Python 3.x
+Flask
+MySQL server
+You can install Flask and other dependencies using pip:
+
+pip install Flask
+pip install pymysql  # for MySQL database interaction
+
+CONFIGURATION
+
+Database Configuration:
+Create a MySQL database with the provided schema. You can use the provided SQL script to create the necessary tables and populate them with sample data.
+Update the config.py file with your database connection details.
+
+Flask Configuration:
+Open config.py and set DEBUG = True for development mode.
+Ensure that HOST is set correctly.
+
+Running the API
+
+To run the London Eye Booking API, follow these steps:
+
+Start the Flask Application:
+Navigate to the root directory of the project.
+
+Run the following command in the terminal:
+python app.py
+
+This will start the Flask application, and the API will be accessible at the specified host and port (default: http://localhost:5000).
+Interacting with the API:
+You can now interact with the API using client applications, scripts, or tools like Postman.
+Check the API endpoints (/availability, /bookings, etc.) to view available slots, make bookings, and retrieve booking information.
+Example Usage
+
+Here's an example of how to use the API:
+
+Check Availability:
+Send a GET request to /availability endpoint to check available slots.
+
+Make Booking:
+Send a POST request to /bookings endpoint with customer name, booking date, and morning/afternoon selection to make a booking.
+Expected Outcome
+
+Upon starting the API, it should connect to the MySQL database and be ready to handle requests.
+Users should be able to check availability, make bookings, and retrieve booking information through the API endpoints.
+Successful requests will return the relevant data with appropriate status codes, while unsuccessful requests will return error messages.
 
 ## Getting Started
 
@@ -42,9 +86,7 @@ Contributions to the London Attractions project are welcome! To contribute, foll
 3. Make your changes, commit them, and push to your fork.
 4. Submit a pull request with a detailed description of your changes.
 
-## License
 
-# not sure about
 
 ---
 
