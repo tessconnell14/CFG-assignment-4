@@ -7,25 +7,27 @@ This project includes the design and implementation of an API
 
 ---
 
-London Eye Booking API
+## London Eye Booking API
 
-Introduction
+**Introduction**
 
 Welcome to the London Eye Booking API documentation! This API allows users to check availability and make bookings for slots at the London Eye attraction.
 
-Installation Requirements
+### Installation Requirements
 
 Before running the API, ensure you have the following installed:
 
-Python 3.x
-Flask
-MySQL server
+
+- Python 3.x
+- Flask
+- MySQL server
+  
 You can install Flask and other dependencies using pip:
 
 pip install Flask
 pip install pymysql  # for MySQL database interaction
 
-CONFIGURATION
+## CONFIGURATION
 
 Database Configuration:
 Create a MySQL database with the provided schema. You can use the provided SQL script to create the necessary tables and populate them with sample data.
@@ -35,7 +37,7 @@ Flask Configuration:
 Open config.py and set DEBUG = True for development mode.
 Ensure that HOST is set correctly.
 
-Running the API
+## Running the API
 
 To run the London Eye Booking API, follow these steps:
 
