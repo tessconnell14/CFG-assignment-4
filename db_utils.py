@@ -163,7 +163,7 @@ def cancel_booking_details(name_id):
         cur = db_connection.cursor()
         print("Connected to DB: %s" % db_name)
 
-        query = """DELETE FROM bookings WHERE name_ID = '{}'""".format(name_id=name_id)
+        query = """DELETE FROM bookings WHERE name_ID = '{}'""".format(name_id)
 
         cur.execute(query)
         result = cur.fetchall()
