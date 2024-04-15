@@ -34,4 +34,18 @@ INSERT INTO availability
     ('2024-04-20', 10, 10),
     ('2024-04-21', 10, 10);
     
-SELECT * FROM bookings
+UPDATE availability
+SET morning_booked_tickets = 0
+WHERE morning_booked_tickets IS NULL;
+
+UPDATE availability
+SET afternoon_booked_tickets = 0
+WHERE afternoon_booked_tickets IS NULL;
+
+ALTER TABLE availability
+RENAME COLUMN afternoon_booked_tickets TO  evening_booked_tickets,
+RENAME COLUMN afternoon_max_tickets TO  evening_max_tickets;
+    
+SELECT * FROM bookings;
+
+SELECT * FROM new_schema.availability;
