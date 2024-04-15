@@ -1,24 +1,24 @@
 # Assignment-4
 This repo contains the CFG degree Assignment 4 group project work by Sarah, Shelly, Shradha, Tess and Emese. &lt;3
 
-[Kanban Board]([url](https://miro.com/app/board/uXjVKWg95GQ=/))
+[Kanban board](https://miro.com/app/board/uXjVKWg95GQ=/)
 
 This project includes the design and implementation of an API
 
 ---
 
-## London Eye Booking API :EMOJICODE🎡
+## 🎡 London Eye Booking API 🎡
 
 **Introduction**
 
 Welcome to the London Eye Booking API documentation! This API allows users to check availability and make bookings for slots at the London Eye attraction.
+
 ![Image of the London Eye, added in the markdown](https://github.com/Szkazka/Assignment-4/assets/152419320/5bc1a5fa-1af8-472d-9fee-a918fdc78497)
 
 
 ### Installation Requirements
 
 Before running the API, ensure you have the following installed:
-
 
 - Python 3.x
 - Flask
@@ -86,7 +86,8 @@ To get started with the London Attractions project, follow these steps:
 
 ## Contributing
 
-> [!TIP] Contributions to the London Attractions project are welcome! To contribute, follow these steps:
+> [!TIP]
+> Contributions to the London Attractions project are welcome! To contribute, follow these steps:
 
 1. Fork the repository.
 2. Create a new branch for your feature or bug fix.
