@@ -94,6 +94,14 @@ To get started with the London Attractions project, follow these steps:
 3. Make your changes, commit them, and push to your fork.
 4. Submit a pull request with a detailed description of your changes.
 
+## Using GIT COMMANDS
+
+- Checking status using git status in the command line
+
+  ![image](https://github.com/Szkazka/Assignment-4/assets/160747463/3a61162c-adf0-4383-8df8-7e32877e4156)
+
+  - The rest can be seen in the project history.
+
 
 
 ---
