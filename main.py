@@ -61,6 +61,23 @@ def run():
     print()
     print('See you soon!')
 
+def run():
+    print('############################')
+    print('Hello, welcome to the London Eye Booking System')
+    print('############################')
+    print()
+    print()
+    action = input('Would you like to cancel a booking (Y/N)?  ')
+
+    if action.upper() == 'Y':
+        cancel_booking()
+    elif action.upper() == 'N':
+        print("No booking cancellation requested.")
+    else:
+        print("Invalid choice. Please try again.")
+
+    print()
+    print('See you soon!')
 
 if __name__ == '__main__':
     run()
