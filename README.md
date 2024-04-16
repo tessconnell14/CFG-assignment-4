@@ -114,5 +114,4 @@ Having a requirements.txt file helps ensure that the project can be easily repro
 
 ## .gitignore file
 A .gitignore file is important because it lets you specify files and directories that you don't want Git to track. This helps keep your repository clean, reduces its size, and prevents unnecessary files from causing issues or conflicts.
----
 
