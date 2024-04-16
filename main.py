@@ -61,7 +61,16 @@ def run():
     print()
     print('See you soon!')
 
-def runCancel():
+def cancel_booking(name_id):
+    url = 'http://127.0.0.1:5002/bookings/{}'.format(name_id)
+    response = requests.delete(url)
+    if response.status_code == 200:
+        print("Booking with ID {} has been cancelled successfully.".format(name_id))
+    else:
+        print("Failed to cancel booking. Status code: {}".format(response.status_code))
+
+
+def run():
     print('############################')
     print('Hello, welcome to the London Eye Booking System')
     print('############################')
@@ -70,7 +79,8 @@ def runCancel():
     action = input('Would you like to cancel a booking (Y/N)?  ')
 
     if action.upper() == 'Y':
-        cancel_booking_details()
+        name_id = input('Enter the name ID to cancel: ')
+        cancel_booking(name_id)  # Pass the name ID to the cancel_booking function
     elif action.upper() == 'N':
         print("No booking cancellation requested.")
     else:
