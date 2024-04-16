@@ -77,7 +77,7 @@ def run():
         print("Invalid choice. Please try again.")
 
     print()
-    print('See you soon!')
+    print("Thank you for using the London Eye Booking System. Have a great day!")
 
 if __name__ == '__main__':
     run()
