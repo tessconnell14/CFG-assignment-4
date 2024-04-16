@@ -1,6 +1,6 @@
 import requests
 import json
-from db_utils import add_booking, update_availability, check_availability
+from db_utils import add_booking, update_availability, check_availability, cancel_booking_details
 
 
 def get_availability_by_date():
@@ -70,7 +70,7 @@ def runCancel():
     action = input('Would you like to cancel a booking (Y/N)?  ')
 
     if action.upper() == 'Y':
-        cancel_booking()
+        cancel_booking_details()
     elif action.upper() == 'N':
         print("No booking cancellation requested.")
     else:
