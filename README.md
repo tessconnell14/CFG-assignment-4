@@ -112,5 +112,7 @@ To get started with the London Attractions project, follow these steps:
 ## Requirements file
 Having a requirements.txt file helps ensure that the project can be easily reproduced on different environments and by other developers, as they can quickly set up the same dependencies required by your project. It also helps manage the versions of dependencies, making it easier to maintain consistency across different installations or environments.
 
+## .gitignore file
+A .gitignore file is important because it lets you specify files and directories that you don't want Git to track. This helps keep your repository clean, reduces its size, and prevents unnecessary files from causing issues or conflicts.
 ---
 
