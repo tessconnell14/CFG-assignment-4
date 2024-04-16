@@ -61,7 +61,7 @@ You can now interact with the API using client applications, scripts, or tools l
 
 Check the API endpoints (/availability, /bookings, etc.) to view available slots, make bookings, and retrieve booking information.
 
-# Example Usage
+## Example Usage
 
 Here's an example of how to use the API:
 
@@ -109,6 +109,8 @@ To get started with the London Attractions project, follow these steps:
   - The rest can be seen in the project history.
 
 
+## Requirements file
+Having a requirements.txt file helps ensure that the project can be easily reproduced on different environments and by other developers, as they can quickly set up the same dependencies required by your project. It also helps manage the versions of dependencies, making it easier to maintain consistency across different installations or environments.
 
 ---
 
