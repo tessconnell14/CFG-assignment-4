@@ -61,7 +61,7 @@ def run():
     print()
     print('See you soon!')
 
-def run():
+def runCancel():
     print('############################')
     print('Hello, welcome to the London Eye Booking System')
     print('############################')
