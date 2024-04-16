@@ -1,6 +1,3 @@
-# A .gitignore file is important because it lets you specify files and directories that you don't want Git to track. 
-# This helps keep your repository clean, reduces its size, and prevents unnecessary files from causing issues or conflicts.
-
 .idea
 
 # Byte-compiled / optimized / DLL files
